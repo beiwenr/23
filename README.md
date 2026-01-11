@@ -4,417 +4,311 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>墙面工艺 - 3D效果与施工指南</title>
+    <title>保温上人屋面施工技术图</title>
     <style>
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            font-family: 'Microsoft YaHei', 'Segoe UI', sans-serif;
         }
         body {
-            background-color: #f8f9fa;
+            background-color: #f8fafc;
             color: #333;
             line-height: 1.6;
             padding: 20px;
-            max-width: 1400px;
+        }
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
         }
-        /* 版头色块 - 天蓝色 */
         header {
             text-align: center;
             margin-bottom: 30px;
-            padding: 25px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #4FC3F7 0%, #29B6F6 100%);
+            padding: 25px 20px;
+            background-color: #7EC8E3; /* 调整饱和度的天蓝色 */
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(126, 200, 227, 0.15);
             color: white;
-            box-shadow: 0 6px 15px rgba(41, 182, 246, 0.2);
         }
-        h1 {
+        header h1 {
             color: white;
-            margin-bottom: 10px;
-            font-size: 2.2em;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            margin-bottom: 12px;
+            font-size: 1.8em;
         }
         .subtitle {
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255, 255, 255, 0.95);
             font-size: 1.1em;
+            font-weight: normal;
         }
-        /* 主要对比区域样式 */
-        .comparison-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+        .model-info {
+            background-color: #f0f7fa;
+            border-left: 4px solid #7EC8E3;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+            color: #2c6a8d;
+            border-radius: 0 4px 4px 0;
+        }
+        .comparison-section {
+            display: flex;
+            flex-wrap: wrap;
             gap: 20px;
             margin-bottom: 40px;
         }
-        /* 手机端双列布局调整 */
-        @media (max-width: 768px) {
-            .comparison-container {
-                grid-template-columns: 1fr 1fr;
-                gap: 15px;
-            }
-            .panel h2 {
-                font-size: 1.2em;
-                padding: 15px 15px;
-            }
-            .display-area {
-                height: 250px;
-            }
-            .panel p {
-                font-size: 0.85em;
-                padding: 15px 15px 20px;
-            }
-        }
-        @media (max-width: 480px) {
-            .comparison-container {
-                grid-template-columns: 1fr 1fr;
-                gap: 12px;
-            }
-            .panel h2 {
-                font-size: 1em;
-                padding: 12px 12px;
-            }
-            .display-area {
-                height: 200px;
-            }
-            .panel p {
-                font-size: 0.8em;
-                padding: 12px 12px 15px;
-            }
-            .panel h2 i {
-                font-size: 0.9em;
-                margin-right: 8px;
-            }
-        }
-        .panel {
+        .comparison-item {
+            flex: 1;
+            min-width: 300px;
             background: white;
-            border-radius: 12px;
-            padding: 0;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
-        .panel:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
-        }
-        /* 3D效果图与平面效果图标题区域 - 绿色背景 */
-        .panel h2 {
+        .comparison-header {
+            background: #5CB85C; /* 调整饱和度的绿色 */
             color: white;
-            background: linear-gradient(135deg, #43A047 0%, #2E7D32 100%);
-            padding: 18px 25px;
-            margin: 0;
-            font-size: 1.5em;
-            border-radius: 12px 12px 0 0;
-            display: flex;
-            align-items: center;
+            padding: 12px 20px;
+            font-weight: bold;
+            text-align: center;
         }
-        .panel h2 i {
-            margin-right: 12px;
-            font-size: 1.2em;
+        .model-container, .plan-container {
+            flex-grow: 1;
+            min-height: 400px;
+            position: relative;
         }
-        /* 3D模型和平面图展示区 */
-        .display-area {
-            width: 100%;
-            height: 380px;
-            background: linear-gradient(145deg, #f5f5f5, #ececec);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #888;
-            font-size: 1.2em;
-            border: none;
-            margin: 0;
-            overflow: hidden;
-            padding: 10px;
-        }
-        .display-area iframe {
+        #sketchfab-embed {
             width: 100%;
             height: 100%;
             border: none;
-            border-radius: 6px;
         }
-        .display-area img {
-            max-width: 100%;
-            max-height: 100%;
-            border-radius: 6px;
+        .plan-image {
+            width: 100%;
+            height: 100%;
             object-fit: contain;
+            display: block;
+            padding: 15px;
+            background-color: #fff;
         }
-        .panel p {
-            color: #555;
-            font-size: 0.95em;
-            padding: 20px 25px 25px;
-            margin: 0;
-        }
-        /* 施工信息区域样式 */
-        .construction-info {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+        .content-section {
+            display: flex;
+            flex-wrap: wrap;
             gap: 20px;
             margin-bottom: 30px;
         }
-        /* 手机端施工信息区域双列布局调整 */
-        @media (max-width: 768px) {
-            .construction-info {
-                grid-template-columns: 1fr 1fr;
-                gap: 15px;
-            }
-            .info-section h2 {
-                font-size: 1.2em;
-                padding: 15px 15px;
-            }
-            .info-section-content {
-                padding: 15px;
-            }
-            .warning-list li {
-                padding: 10px 12px;
-                margin-bottom: 10px;
-                font-size: 0.85em;
-            }
-            .process-steps li {
-                padding: 15px 15px 15px 60px;
-                margin-bottom: 15px;
-            }
-            .step-title {
-                font-size: 1em;
-            }
-            .step-desc {
-                font-size: 0.85em;
-            }
-            .process-steps li:before {
-                width: 30px;
-                height: 30px;
-                font-size: 1em;
-            }
-        }
-        @media (max-width: 480px) {
-            .construction-info {
-                grid-template-columns: 1fr 1fr;
-                gap: 12px;
-            }
-            .info-section h2 {
-                font-size: 1em;
-                padding: 12px 12px;
-            }
-            .info-section-content {
-                padding: 12px;
-            }
-            .warning-list li {
-                padding: 8px 10px;
-                margin-bottom: 8px;
-                font-size: 0.75em;
-            }
-            .process-steps li {
-                padding: 12px 12px 12px 50px;
-                margin-bottom: 12px;
-            }
-            .step-title {
-                font-size: 0.9em;
-            }
-            .step-desc {
-                font-size: 0.75em;
-            }
-            .process-steps li:before {
-                width: 25px;
-                height: 25px;
-                font-size: 0.9em;
-                left: 15px;
-            }
-            .info-section h2 i {
-                font-size: 0.9em;
-                margin-right: 8px;
-            }
-        }
-        .info-section {
+        .card {
+            flex: 1;
+            min-width: 300px;
             background: white;
-            border-radius: 12px;
-            padding: 0;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             overflow: hidden;
         }
-        /* 施工注意事项和施工流程标题区域 - 紫色背景 */
-        .info-section h2 {
+        .card-header {
+            background: #8E44AD; /* 调整饱和度的紫色 */
             color: white;
-            background: linear-gradient(135deg, #7B1FA2 0%, #6A1B9A 100%);
-            display: flex;
-            align-items: center;
-            margin: 0;
-            padding: 20px 25px;
-            border-radius: 12px 12px 0 0;
-            font-size: 1.5em;
-        }
-        .info-section h2 i {
-            margin-right: 12px;
+            padding: 15px 20px;
+            font-weight: bold;
             font-size: 1.2em;
         }
-        .info-section-content {
-            padding: 25px;
+        .card-content {
+            padding: 20px;
         }
-        /* 注意事项列表 */
-        .warning-list {
-            list-style: none;
+        .card-content ul {
+            list-style-position: inside;
+            margin-bottom: 15px;
         }
-        .warning-list li {
-            padding: 14px 15px;
-            margin-bottom: 12px;
-            background-color: #f9f9f9;
-            border-left: 4px solid #3498db;
-            border-radius: 0 6px 6px 0;
-            transition: all 0.2s ease;
+        .card-content li {
+            margin-bottom: 10px;
+            padding-left: 10px;
+            border-left: 3px solid #E8DAEF;
+            margin-left: 5px;
         }
-        .warning-list li:hover {
-            background-color: #e3f2fd;
-            border-left-color: #1a73e8;
-        }
-        .warning-list li strong {
-            color: #2c3e50;
-        }
-        /* 施工流程步骤 */
-        .process-steps {
+        .step-list {
             counter-reset: step-counter;
-            list-style: none;
         }
-        .process-steps li {
+        .step-list li {
             counter-increment: step-counter;
-            padding: 20px 20px 20px 70px;
-            margin-bottom: 20px;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 25px;
+            padding-left: 110px;
             position: relative;
-            border: 1px solid #eaeaea;
+            list-style: none;
+            min-height: 40px;
+            border-left: 3px solid #E8DAEF;
+            margin-left: 5px;
         }
-        .process-steps li:before {
-            content: counter(step-counter);
+        .step-list li::before {
+            content: "步骤 " counter(step-counter);
             position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: linear-gradient(135deg, #4a6fa5, #2c3e50);
+            left: 0;
+            top: 0;
+            background: #8E44AD;
             color: white;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             font-weight: bold;
-            font-size: 1.1em;
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            width: 90px;
+            text-align: center;
+            box-sizing: border-box;
+            line-height: 1.4;
         }
-        .step-title {
+        .step-list li strong {
             display: block;
-            font-weight: bold;
-            color: #2c3e50;
-            margin-bottom: 8px;
-            font-size: 1.1em;
+            margin-bottom: 5px;
+            font-size: 1.05em;
+            color: #6C3483;
         }
-        .step-desc {
-            color: #666;
-            font-size: 0.95em;
+        .step-detail {
+            display: block;
+            padding-top: 5px;
+            line-height: 1.5;
+        }
+        .warning {
+            background-color: #F4ECF7;
+            border-left: 4px solid #8E44AD;
+            padding: 15px;
+            margin-top: 25px;
+            border-radius: 0 4px 4px 0;
+            color: #512E5F;
         }
         footer {
             text-align: center;
             margin-top: 40px;
             padding-top: 20px;
-            border-top: 1px solid #ddd;
-            color: #7f8c8d;
+            border-top: 1px solid #E8DAEF;
+            color: #6C3483;
             font-size: 0.9em;
         }
+        footer a {
+            color: #5CB85C;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .comparison-section, .content-section {
+                flex-direction: column;
+            }
+            .model-container, .plan-container {
+                min-height: 300px;
+            }
+            .step-list li {
+                padding-left: 100px;
+            }
+            .step-list li::before {
+                width: 85px;
+                padding: 6px 10px;
+            }
+        }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <h1><i class="fas fa-paint-roller"></i> 墙面工艺详解</h1>
-        <p class="subtitle">3D结构、平面效果与标准化施工指南</p>
-    </header>
+    <div class="container">
+        <header>
+            <h1>保温上人屋面施工技术详解</h1>
+            <p class="subtitle">3D效果图、平面图与施工指导</p>
+        </header>
 
-    <main>
-        <section class="comparison-container">
-            <!-- 左侧：3D效果图区域 -->
-            <div class="panel">
-                <h2><i class="fas fa-cube"></i> 3D工艺效果图</h2>
-                <div class="display-area">
-                    <!-- 请注意：你提供的Sketchfab模型无法在线加载，此处使用了原嵌入代码作为占位 -->
-                    <!-- 请确保你的3D模型可以公开访问，或替换为其他可用的嵌入代码 -->
-                    <iframe title="墙面工艺" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true"
-                        allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport
-                        execution-while-not-rendered web-share
-                        src="https://sketchfab.com/models/e9633a81cf584a358aae98475066962c/embed?autospin=1&autostart=1&preload=1">
+        <div class="model-info">
+            <p><strong>3D模型信息</strong> | 来源：Sketchfab | 作者：Bo-Zan-Li-Zi | 发布日期：2026年1月9日 | 面数：58.3k三角面</p>
+        </div>
+
+        <section class="comparison-section">
+            <div class="comparison-item">
+                <div class="comparison-header">3D效果图</div>
+                <div class="model-container">
+                    <!-- 嵌入来自Sketchfab的3D模型 -->
+                    <iframe id="sketchfab-embed"
+                            title="保温上人屋面 3D模型"
+                            allow="autoplay; fullscreen; xr-spatial-tracking"
+                            xr-spatial-tracking
+                            execution-while-out-of-viewport
+                            execution-while-not-rendered
+                            web-share
+                            allowfullscreen
+                            mozallowfullscreen="true"
+                            webkitallowfullscreen="true"
+                            src="https://sketchfab.com/models/9e7d2616f8cb4e50b847149f049a0063/embed?autospin=1&autostart=1&ui_controls=1&ui_infos=1&ui_stop=1&ui_watermark_link=0&ui_watermark=0">
                     </iframe>
                 </div>
-                <p>此3D模型展示了墙面的分层结构与施工工艺。你可以使用鼠标旋转、缩放模型，从不同角度观察细节。</p>
             </div>
-
-            <!-- 右侧：平面效果图区域 -->
-            <div class="panel">
-                <h2><i class="fas fa-image"></i> 平面施工图</h2>
-                <div class="display-area">
-                    <!-- 已更新为你提供的新图片链接 -->
-                    <img src="https://image2url.com/r2/bucket3/images/1768048917525-b899ead1-ea34-46eb-9037-a1e046c342cf.png" alt="墙面平面施工图">
+            <div class="comparison-item">
+                <div class="comparison-header">平面效果图</div>
+                <div class="plan-container">
+                    <!-- 更新为新的平面效果图 -->
+                    <img src="https://image2url.com/r2/bucket3/images/1768103834238-53b60e00-21d9-447c-b623-daefd31c7982.png" 
+                         alt="保温上人屋面平面图" 
+                         class="plan-image">
                 </div>
-                <p>平面图展示了墙面的尺寸、材料标注及关键施工节点。请结合3D模型对照查看。</p>
             </div>
         </section>
 
-        <section class="construction-info">
-            <!-- 左侧：施工注意事项 -->
-            <div class="info-section">
-                <h2><i class="fas fa-exclamation-triangle"></i> 施工注意事项</h2>
-                <div class="info-section-content">
-                    <ul class="warning-list">
-                        <li><strong>基层处理：</strong>施工前必须确保墙面基层坚实、平整、无浮灰、无油污。空鼓、开裂处需彻底铲除并修补。</li>
-                        <li><strong>环境要求：</strong>施工环境温度应保持在5℃-35℃，空气相对湿度低于85%。避免在雨天、大风天施工。</li>
-                        <li><strong>材料调配：</strong>严格按照产品说明书的比例调配腻子、涂料等材料，并充分搅拌均匀。调配好的材料应在规定时间内用完。</li>
-                        <li><strong>分层施工：</strong>腻子、底漆、面漆等每道工序必须待前一道完全干透后方可进行，严禁为赶工期强行施工。</li>
-                        <li><strong>成品保护：</strong>施工中和施工后24小时内，应避免磕碰、淋水、暴晒，保持室内通风良好但避免强对流风直吹墙面。</li>
-                        <li><strong>安全规范：</strong>高空作业必须搭建稳固脚手架，佩戴安全帽、安全带。施工现场注意防火，材料远离电源、火源。</li>
+        <section class="content-section">
+            <div class="card">
+                <div class="card-header">施工注意事项</div>
+                <div class="card-content">
+                    <ul>
+                        <li><strong>基层处理</strong>：施工前必须将结构基层清理干净，确保平整、牢固、无松动、无起砂。阴阳角应做成圆弧形。</li>
+                        <li><strong>材料准备</strong>：保温材料、防水卷材等进场需有合格证并按规定复检。材料应分类堆放整齐，注意防火、防潮。</li>
+                        <li><strong>坡度控制</strong>：严格按照设计图纸找坡，确保屋面排水通畅，无积水。平屋面排水坡度一般不小于2%。</li>
+                        <li><strong>节点处理</strong>：屋面与女儿墙、出屋面管道、设备基础等交接处是防水的薄弱环节，需做附加防水层，确保密封严密。</li>
+                        <li><strong>施工环境</strong>：防水层和保温层施工宜在晴天进行，基层应干燥。五级风及以上或雨雪天气不得施工。</li>
+                        <li><strong>成品保护</strong>：每道工序完成后应及时验收，后续施工中应注意保护已完工的保温层、防水层，避免穿刺破坏。</li>
                     </ul>
                 </div>
             </div>
-
-            <!-- 右侧：施工流程 -->
-            <div class="info-section">
-                <h2><i class="fas fa-tasks"></i> 标准施工流程</h2>
-                <div class="info-section-content">
-                    <ol class="process-steps">
+            <div class="card">
+                <div class="card-header">施工流程</div>
+                <div class="card-content">
+                    <ol class="step-list">
                         <li>
-                            <span class="step-title">第一步：基层检查与处理</span>
-                            <span class="step-desc">检查墙面空鼓、开裂、平整度与垂直度。铲除疏松层，用水泥砂浆或嵌缝石膏修补缺陷，彻底清洁表面。</span>
+                            <strong>基层清理与处理</strong>
+                            <span class="step-detail">清除屋面板上的杂物、灰尘，修补孔洞和裂缝，保证基层坚实、平整、干净。</span>
                         </li>
                         <li>
-                            <span class="step-title">第二步：涂刷界面剂</span>
-                            <span class="step-desc">均匀涂刷（或滚涂）墙体界面剂（墙固），增强基层附着力，封闭粉尘。确保涂刷到位，无遗漏。</span>
+                            <strong>找坡层施工</strong>
+                            <span class="step-detail">按设计坡度要求，用水泥陶粒混凝土或轻质砂浆铺设找坡层，形成屋面排水坡度。</span>
                         </li>
                         <li>
-                            <span class="step-title">第三步：阴阳角处理与挂网</span>
-                            <span class="step-desc">用靠尺和阴/阳角条处理所有阴阳角，确保顺直。在开槽处、新旧墙体接缝处等可能开裂的部位粘贴抗裂网格布。</span>
+                            <strong>保温层铺设</strong>
+                            <span class="step-detail">将预制保温板（如XPS挤塑板、EPS聚苯板）紧密铺贴，板缝错开，并用专用胶粘剂固定。</span>
                         </li>
                         <li>
-                            <span class="step-title">第四步：批刮腻子</span>
-                            <span class="step-desc">通常批刮2-3遍。第一遍重在找平，后一遍重在收光。每遍厚度不宜超过2mm，干透后用砂纸打磨平整。</span>
+                            <strong>找平层施工</strong>
+                            <span class="step-detail">在保温层上做水泥砂浆找平层，表面压光，为防水层施工提供平整基层。</span>
                         </li>
                         <li>
-                            <span class="step-title">第五步：打磨与清扫</span>
-                            <span class="step-desc">使用灯泡照射辅助，用细砂纸（如240目以上）全面打磨至墙面平整光滑。打磨后务必用鸡毛掸子或湿布彻底清扫浮灰。</span>
+                            <strong>防水层施工</strong>
+                            <span class="step-detail">先涂刷基层处理剂，然后铺贴防水卷材（SBS、APP等）。卷材搭接宽度应符合规范，热熔封边。</span>
                         </li>
                         <li>
-                            <span class="step-title">第六步：涂刷底漆与面漆</span>
-                            <span class="step-desc">先涂刷一遍抗碱底漆。干透后，涂刷两遍墙面面漆。涂刷应均匀，避免流挂、漏刷，滚涂纹理要细腻一致。</span>
+                            <strong>保护层施工</strong>
+                            <span class="step-detail">防水层验收合格后，铺设隔离层，再浇筑细石混凝土保护层（配筋）或铺设面砖等上人面层。</span>
                         </li>
                         <li>
-                            <span class="step-title">第七步：验收与养护</span>
-                            <span class="step-desc">检查墙面是否平整、无色差、无疙瘩、无刷痕。施工完毕后，建议养护7天以上，期间避免触碰和剧烈温湿度变化。</span>
+                            <strong>细部构造处理</strong>
+                            <span class="step-detail">安装雨水口、排气孔，处理泛水、收头等细部节点，确保全屋面防水密闭。</span>
+                        </li>
+                        <li>
+                            <strong>养护与验收</strong>
+                            <span class="step-detail">保护层及时洒水养护。所有工序完成后，进行蓄水或淋水试验，验收合格后方可交付。</span>
                         </li>
                     </ol>
                 </div>
             </div>
         </section>
-    </main>
 
-    <footer>
-        <p>© 2026 墙面工艺施工指南 | 本页面内容仅供参考，具体施工请以实际设计方案和材料说明为准。</p>
-        <p>最后更新日期：2026年1月10日</p>
-    </footer>
+        <div class="warning">
+            <p><strong>重要提示：</strong> 本页提供的施工信息为基于常见屋面构造的<strong>通用性指导</strong>。实际施工必须严格遵循具体项目的<strong>设计图纸、施工规范及当地标准</strong>，并由专业技术人员负责。</p>
+        </div>
+
+        <footer>
+            <p>© 2026 保温上人屋面施工技术参考 | 3D模型来源：<a href="https://sketchfab.com/Bo-Zan-Li-Zi" target="_blank">Sketchfab - Bo-Zan-Li-Zi</a></p>
+            <p><em>注：平面效果图已更新为最新版本。</em></p>
+        </footer>
+    </div>
 </body>
 </html>
